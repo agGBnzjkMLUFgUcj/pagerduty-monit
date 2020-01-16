@@ -10,7 +10,7 @@
 # PAGERDUTY_SERVICE_KEY="1234567890abcdef1234567890abcdef"
 
 if [ -z "$1" ]; then
-  echo "Usage: $0 <event>"
+  echo "Usage: $0 <event> <description>"
   exit 1
 elif [ -z "$PAGERDUTY_SERVICE_KEY" ]; then
   echo "Failed to trigger event: you must set the PAGERDUTY_SERVICE_KEY variable."
@@ -35,7 +35,7 @@ if [ -f "$TMP_FILE" ]; then
   fi
 fi
 
-DESCRIPTION="$EVENT failed on $HOST"
+DESCRIPTION="$EVENT failed on $HOST: $2"
 DATE=`date`
 
 echo "$DATE: $DESCRIPTION" >> $TMP_FILE
